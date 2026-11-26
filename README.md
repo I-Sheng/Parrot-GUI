@@ -9,6 +9,8 @@ cd parrot-gui
 docker build -t parrot-gui .
 ```
 
+This installs a beginner tool set (~7 GB). To change it, edit the `PARROT_TOOLS` list in the `Dockerfile`.
+
 ## 2. Run
 
 ```bash

@@ -6,16 +6,26 @@
 #   - raw VNC bound to localhost by default; passwords can be set via env
 #
 # Build:  docker build -t parrot-gui .
-#         docker build --build-arg PARROT_TOOLS=parrot-tools-full -t parrot-gui:full .
+#         (installs the beginner tool list in PARROT_TOOLS below)
 FROM parrotsec/core:latest
 
 LABEL org.opencontainers.image.title="parrot-gui" \
       org.opencontainers.image.description="Parrot OS with XFCE over noVNC/VNC/RDP"
 
 ARG DEBIAN_FRONTEND=noninteractive
-# Tool metapackage(s). parrot-tools-full is very large (~10+ GB);
-# set to "" for a bare desktop, or pick smaller metapackages.
-ARG PARROT_TOOLS="parrot-tools-full"
+# Beginner tool set (~7 GB). Edit this list to add or remove tools.
+#   Scanning   : nmap whatweb nikto
+#   Web        : gobuster ffuf sqlmap burpsuite
+#   Passwords  : hydra john hashcat wordlists
+#   Windows/SMB: smbclient enum4linux netexec evil-winrm python3-impacket
+#   Exploits   : metasploit-framework exploitdb
+#   Wordlists / shells / VPN: seclists netcat-openbsd socat openvpn
+ARG PARROT_TOOLS="nmap whatweb nikto \
+    gobuster ffuf sqlmap burpsuite \
+    hydra john hashcat wordlists \
+    smbclient enum4linux netexec evil-winrm python3-impacket \
+    metasploit-framework exploitdb \
+    seclists netcat-openbsd socat openvpn"
 
 # Desktop + remote access
 RUN apt-get update && \
