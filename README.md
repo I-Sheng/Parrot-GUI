@@ -2,6 +2,12 @@
 
 Parrot OS with an XFCE desktop in your browser.
 
+A Docker image for Hack The Box and other CTF labs. You get a full Parrot desktop over noVNC, with no VM to set up. It comes with a beginner tool set: nmap, gobuster, ffuf, sqlmap, Burp Suite, hydra, john, hashcat, netexec, evil-winrm, impacket, Metasploit and SecLists. OpenVPN runs inside the container, so lab traffic stays off your host network.
+
+- **Browser access**: noVNC on `localhost:6080`. RDP is also available.
+- **Random passwords**: new ones on every start, unless you set them yourself.
+- **Shared folder**: `work/` on the host is mounted at `~/work`.
+
 ## 1. Build
 
 ```bash
